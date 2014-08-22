@@ -1,0 +1,815 @@
+require load=true;
+Array
+(
+    [id] => 2
+    [fullname] => TestCourse1
+    [shortname] => TC1
+)
+require load=true;
+mod=forum
+calling +++++++++++++++++++++++++
+FORUM=
+id=
+module id=
+name=
+section=
+subject=
+text=
+format=
+timeCreated=
+Group id=
+startTime=
+endTime=
+isRead=
+isVisible=
+lastAccess=
+owner=
+type=forum
+Children=
+
+assessed=
+ratingtime=
+assesstimestart=
+assesstimefinish=
+courseid=
+introFormat=
+scale=
+forceSubscribe=
+Discussions=0
+ populate
+forum populate
+stdClass Object
+(
+    [id] => 1
+    [mod] => forum
+    [section] => 0
+    [sectionid] => 3
+    [module] => 9
+    [added] => 1382282023
+    [visible] => 1
+    [visibleold] => 1
+    [name] => News forum
+)
+calling forum load
+require load=true;0
+forum populate
+stdClass Object
+(
+    [id] => 1
+    [type] => news
+    [name] => News forum
+    [introformat] => 1
+    [maxbytes] => 0
+    [maxattachments] => 1
+    [forcesubscribe] => 1
+    [trackingtype] => 1
+    [rsstype] => 0
+    [rssarticles] => 0
+    [timemodified] => 1382282023
+    [warnafter] => 0
+    [blockafter] => 0
+    [blockperiod] => 0
+    [completiondiscussions] => 0
+    [completionreplies] => 0
+    [completionposts] => 0
+    [displaywordcount] => 0
+)
+
+Discussions=
+require load=true;
+1396805578require load=true;
+1396805578require load=true;0
+
+in load
+4
+require load=true;
+13968055781396805578mod=assign
+mod=chat
+mod=choice
+mod=data
+mod=forum
+calling +++++++++++++++++++++++++
+FORUM=
+id=
+module id=
+name=
+section=
+subject=
+text=
+format=
+timeCreated=
+Group id=
+startTime=
+endTime=
+isRead=
+isVisible=
+lastAccess=
+owner=
+type=forum
+Children=
+
+assessed=
+ratingtime=
+assesstimestart=
+assesstimefinish=
+courseid=
+introFormat=
+scale=
+forceSubscribe=
+Discussions=0
+ populate
+forum populate
+stdClass Object
+(
+    [id] => 2
+    [mod] => forum
+    [section] => 2
+    [sectionid] => 5
+    [module] => 9
+    [added] => 1383001221
+    [visible] => 1
+    [visibleold] => 1
+    [name] => Test forum(General)
+)
+calling forum load
+require load=true;0
+forum populate
+stdClass Object
+(
+    [id] => 2
+    [type] => general
+    [name] => Test forum(General)
+    [introformat] => 1
+    [maxbytes] => 512000
+    [maxattachments] => 9
+    [forcesubscribe] => 0
+    [trackingtype] => 1
+    [rsstype] => 0
+    [rssarticles] => 0
+    [timemodified] => 1383001221
+    [warnafter] => 0
+    [blockafter] => 0
+    [blockperiod] => 0
+    [completiondiscussions] => 0
+    [completionreplies] => 0
+    [completionposts] => 0
+    [displaywordcount] => 0
+)
+
+Discussions=
+require load=true;
+1396805578require load=true;
+1396805578require load=true;0
+
+in load
+6
+require load=true;
+1396805578require load=true;
+1396805578require load=true;
+1396805578require load=true;0
+
+in load
+1
+require load=true;
+1396805578require load=true;
+13968055781396805578mod=glossary
+mod=lesson
+mod=quiz
+calling ***************************
+ populate
+calling quiz load
+Quiz_Content Object
+(
+    [courseid:protected] => 
+    [cm_obj:protected] => stdClass Object
+        (
+            [id] => 11
+            [course] => 2
+            [module] => 16
+            [instance] => 1
+            [section] => 5
+            [idnumber] => 
+            [added] => 1383253039
+            [score] => 0
+            [indent] => 0
+            [visible] => 1
+            [visibleold] => 1
+            [groupmode] => 0
+            [groupingid] => 0
+            [groupmembersonly] => 0
+            [completion] => 0
+            [completiongradeitemnumber] => 
+            [completionview] => 0
+            [completionexpected] => 0
+            [availablefrom] => 0
+            [availableuntil] => 0
+            [showavailability] => 0
+            [showdescription] => 0
+            [name] => Quiz 1
+            [modname] => quiz
+        )
+
+    [attempts:protected] => 
+    [userGrades:protected] => Array
+        (
+        )
+
+    [timelimit] => 0
+    [recentAttemptAt] => 
+    [questions] => Multi_Question_Content Object
+        (
+            [question_objs:Multi_Question_Content:private] => Array
+                (
+                )
+
+            [quiz_id] => -1
+            [cat_ids] => 
+            [qorder_Ite] => 0
+            [id] => 
+            [module_id:protected] => 
+            [subject] => 
+            [name] => 
+            [description] => 
+            [text] => 
+            [cm] => 
+            [children] => Array
+                (
+                )
+
+            [format] => 
+            [groupid] => 
+            [type] => 
+            [parent] => 
+            [target:protected] => Array
+                (
+                )
+
+            [owner:protected] => 
+            [isVisible:protected] => 
+            [section_num:protected] => 
+            [timeCreated:protected] => 
+            [lastAccess:protected] => 
+            [isRead:protected] => 
+            [fileLinks:protected] => Array
+                (
+                )
+
+            [startTime:protected] => 
+            [endTime:protected] => 
+            [content_type:protected] => 
+            [state:protected] => 0
+            [lastUpdateTime:protected] => 0
+        )
+
+    [sumgrades] => 
+    [grademethod] => 
+    [maxGrade:protected] => 
+    [password] => 
+    [subnet] => 
+    [delay1] => 
+    [delay2] => 
+    [categories:protected] => Multi_Question_Category_Content Object
+        (
+            [contexts] => Array
+                (
+                )
+
+            [categories] => Array
+                (
+                )
+
+            [id] => 
+            [module_id:protected] => 
+            [subject] => 
+            [name] => 
+            [description] => 
+            [text] => 
+            [cm] => 
+            [children] => Array
+                (
+                )
+
+            [format] => 
+            [groupid] => 
+            [type] => 
+            [parent] => 
+            [target:protected] => Array
+                (
+                )
+
+            [owner:protected] => 
+            [isVisible:protected] => 
+            [section_num:protected] => 
+            [timeCreated:protected] => 
+            [lastAccess:protected] => 
+            [isRead:protected] => 
+            [fileLinks:protected] => Array
+                (
+                )
+
+            [startTime:protected] => 
+            [endTime:protected] => 
+            [content_type:protected] => 
+            [state:protected] => 0
+            [lastUpdateTime:protected] => 0
+        )
+
+    [id] => 1
+    [module_id:protected] => 16
+    [subject] => 
+    [name] => Quiz 1
+    [description] => 
+    [text] => 
+    [cm] => 11
+    [children] => Array
+        (
+        )
+
+    [format] => Quiz_Format Object
+        (
+            [overduehandling] => 
+            [graceperiod] => 
+            [preferredbehaviour] => 
+            [grademethod] => 
+            [decimalpoints] => 
+            [questiondecimalpoints] => 
+            [reviewattempt] => 
+            [reviewcorrectness] => 
+            [reviewmarks] => 
+            [reviewspecificfeedback] => 
+            [reviewgeneralfeedback] => 
+            [reviewrightanswer] => 
+            [reviewoverallfeedback] => 
+            [questionperpage] => 
+            [navmethod] => 
+            [shufflequestions] => 
+            [shuffleanswers] => 
+        )
+
+    [groupid] => -1
+    [type] => 
+    [parent] => 
+    [target:protected] => Array
+        (
+        )
+
+    [owner:protected] => 
+    [isVisible:protected] => 1
+    [section_num:protected] => 2
+    [timeCreated:protected] => 1383253039
+    [lastAccess:protected] => 
+    [isRead:protected] => 
+    [fileLinks:protected] => Array
+        (
+        )
+
+    [startTime:protected] => 
+    [endTime:protected] => 
+    [content_type:protected] => quiz
+    [state:protected] => 0
+    [lastUpdateTime:protected] => 0
+)
+require load=true;0
+Quiz Id =1
+SELECT q.*, qc.contextid, qqi.grade AS maxmark, qqi.id AS instance FROM {question} q
+            JOIN {question_categories} qc ON q.category = qc.id JOIN {quiz_question_instances} qqi ON qqi.quiz = 1 AND q.id = qqi.question WHERE q.id IN (:qid00005,:qid00006,:qid00007,:qid00008,:qid00009,:qid000010,:qid000011,:qid000012,:qid000013,:qid000014,:qid000015,:qid000016,:qid000017)Array
+(
+    [1] => stdClass Object
+        (
+            [id] => 1
+            [category] => 4
+            [parent] => 1
+            [name] => Random (Default for TC1)
+            [questiontext] => 
+            [questiontextformat] => 0
+            [generalfeedback] => 
+            [generalfeedbackformat] => 0
+            [defaultmark] => 1.0000000
+            [penalty] => 0.0000000
+            [qtype] => random
+            [length] => 1
+            [stamp] => localhost+131031205946+zX8ucT
+            [version] => localhost+131031205946+Jkgbw1
+            [hidden] => 0
+            [timecreated] => 1383253186
+            [timemodified] => 1383253186
+            [createdby] => 2
+            [modifiedby] => 2
+            [contextid] => 18
+            [maxmark] => 1.0000000
+            [instance] => 1
+            [_partiallyloaded] => 1
+        )
+
+    [2] => stdClass Object
+        (
+            [id] => 2
+            [category] => 4
+            [parent] => 0
+            [name] => rectangle
+            [questiontext] => <p>What is the area of a rectangle of length {l} and width {w}?</p>
+            [questiontextformat] => 1
+            [generalfeedback] => 
+            [generalfeedbackformat] => 1
+            [defaultmark] => 1.0000000
+            [penalty] => 0.3333333
+            [qtype] => calculated
+            [length] => 1
+            [stamp] => localhost+131031212936+59rPgd
+            [version] => localhost+131031212937+sFol1H
+            [hidden] => 0
+            [timecreated] => 1383254976
+            [timemodified] => 1383254976
+            [createdby] => 2
+            [modifiedby] => 2
+            [contextid] => 18
+            [maxmark] => 1.0000000
+            [instance] => 2
+            [_partiallyloaded] => 1
+        )
+
+)
+pos=0
+require load=true;0
+1396805579
+>>>Adding options
+
+>>>Done
+pos=1
+require load=true;0
+1396805579
+>>>Adding options
+
+>>>Populate Options
+stdClass Object
+(
+    [id] => 1
+    [question] => 2
+    [synchronize] => 0
+    [single] => 0
+    [shuffleanswers] => 1
+    [correctfeedback] => 
+    [correctfeedbackformat] => 0
+    [partiallycorrectfeedback] => 
+    [partiallycorrectfeedbackformat] => 0
+    [incorrectfeedback] => 
+    [incorrectfeedbackformat] => 0
+    [answernumbering] => abc
+    [shownumcorrect] => 0
+    [answers] => Array
+        (
+            [1] => stdClass Object
+                (
+                    [id] => 1
+                    [question] => 2
+                    [answer] => {l}*{w}
+                    [answerformat] => 0
+                    [fraction] => 1.0000000
+                    [feedback] => 
+                    [feedbackformat] => 1
+                    [tolerance] => 0.01
+                    [tolerancetype] => 1
+                    [correctanswerlength] => 2
+                    [correctanswerformat] => 1
+                )
+
+        )
+
+    [units] => Array
+        (
+        )
+
+    [unitgradingtype] => 0
+    [unitpenalty] => 0.1000000
+    [showunits] => 3
+    [unitsleft] => 0
+)
+
+>>>Done
+require load=true;0
+Context module with id(11)context_module Object
+(
+    [_id:protected] => 42
+    [_contextlevel:protected] => 70
+    [_instanceid:protected] => 11
+    [_path:protected] => /1/3/18/42
+    [_depth:protected] => 4
+)
+Context_Model Object
+(
+    [parents] => Array
+        (
+        )
+
+    [contextlevel] => 
+    [instanceid] => 
+    [path] => 
+    [depth] => 
+    [isCm] => 1
+    [id] => 11
+    [module_id:protected] => 
+    [subject] => 
+    [name] => 
+    [description] => 
+    [text] => 
+    [cm] => 
+    [children] => Array
+        (
+        )
+
+    [format] => 
+    [groupid] => 
+    [type] => 
+    [parent] => 
+    [target:protected] => Array
+        (
+        )
+
+    [owner:protected] => 
+    [isVisible:protected] => 
+    [section_num:protected] => 
+    [timeCreated:protected] => 
+    [lastAccess:protected] => 
+    [isRead:protected] => 
+    [fileLinks:protected] => Array
+        (
+        )
+
+    [startTime:protected] => 
+    [endTime:protected] => 
+    [content_type:protected] => 
+    [state:protected] => 0
+    [lastUpdateTime:protected] => 0
+)
+Get Parents
+1396805579Array
+(
+    [0] => context_module Object
+        (
+            [_id:protected] => 42
+            [_contextlevel:protected] => 70
+            [_instanceid:protected] => 11
+            [_path:protected] => /1/3/18/42
+            [_depth:protected] => 4
+        )
+
+    [1] => context_course Object
+        (
+            [_id:protected] => 18
+            [_contextlevel:protected] => 50
+            [_instanceid:protected] => 2
+            [_path:protected] => /1/3/18
+            [_depth:protected] => 3
+        )
+
+    [2] => context_coursecat Object
+        (
+            [_id:protected] => 3
+            [_contextlevel:protected] => 40
+            [_instanceid:protected] => 1
+            [_path:protected] => /1/3
+            [_depth:protected] => 2
+        )
+
+    [3] => context_system Object
+        (
+            [_id:protected] => 1
+            [_contextlevel:protected] => 10
+            [_instanceid:protected] => 0
+            [_path:protected] => /1
+            [_depth:protected] => 1
+        )
+
+)
+Loading all categories
+require load=true;0
+
+Cat(5) load Questions
+Array
+(
+)
+Cat=Array1396805580require load=true;0
+
+Cat(3) load Questions
+Array
+(
+)
+Cat=Array1396805580require load=true;0
+
+Cat(2) load Questions
+Array
+(
+)
+Cat=Array1396805580require load=true;0
+
+Cat(4) load Questions
+Array
+(
+    [1] => stdClass Object
+        (
+            [id] => 1
+            [category] => 4
+            [qtype] => random
+            [name] => Random (Default for TC1)
+            [questiontext] => 
+            [questiontextformat] => 0
+        )
+
+    [2] => stdClass Object
+        (
+            [id] => 2
+            [category] => 4
+            [qtype] => calculated
+            [name] => rectangle
+            [questiontext] => <p>What is the area of a rectangle of length {l} and width {w}?</p>
+            [questiontextformat] => 1
+        )
+
+    [3] => stdClass Object
+        (
+            [id] => 3
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [4] => stdClass Object
+        (
+            [id] => 4
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [5] => stdClass Object
+        (
+            [id] => 5
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [6] => stdClass Object
+        (
+            [id] => 6
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [7] => stdClass Object
+        (
+            [id] => 7
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [8] => stdClass Object
+        (
+            [id] => 8
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [9] => stdClass Object
+        (
+            [id] => 9
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [10] => stdClass Object
+        (
+            [id] => 10
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [11] => stdClass Object
+        (
+            [id] => 11
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [12] => stdClass Object
+        (
+            [id] => 12
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [13] => stdClass Object
+        (
+            [id] => 13
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [14] => stdClass Object
+        (
+            [id] => 14
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [15] => stdClass Object
+        (
+            [id] => 15
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [16] => stdClass Object
+        (
+            [id] => 16
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [17] => stdClass Object
+        (
+            [id] => 17
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [18] => stdClass Object
+        (
+            [id] => 18
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+    [19] => stdClass Object
+        (
+            [id] => 19
+            [category] => 4
+            [qtype] => calculated
+            [name] => Question
+            [questiontext] => Sample Question
+YAMA
+            [questiontextformat] => 2
+        )
+
+)

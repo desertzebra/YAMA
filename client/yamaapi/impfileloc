@@ -1,0 +1,3 @@
+sudo vim /var/www/moodle/lib/dml/mysqli_native_moodle_database.php 
+sudo vim /var/www/moodle/lib/dml/moodle_database.php 
+
