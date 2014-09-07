@@ -8,7 +8,6 @@
 if(file_exists('config.php')){
   include_once('config.php');
 }elseif(file_exists('config_client.php')){
-echo "current dir=".getcwd() . "<br/>";
   include_once('config_client.php');
   include_once($CFG_YAMAAPI->yamadir.'/config.php');
 }elseif(file_exists("../config_client.php")){
@@ -41,6 +40,26 @@ function initUser($userid){
 //print "<p>userid=$userid</p>";
     $this->active_user->setUserAttribute('id',$userid);
     $this->active_user->load();
+}
+/*
+ * Login the user
+ */
+function loginUser($username,$password){
+    $status = $this->active_user->login($username,$password);
+    if(is_object($status)){
+        $this->initUser($status->id);
+	return '';
+    }else{
+	return $status;
+    }
+}
+/*
+ * Logout the user
+ */
+function logoutUser(){
+    $this->active_user->logout();
+    $this->active_user = null;
+    $this->active_course = null;
 }
 function initCourse($course){
     $this->active_course->load($course);

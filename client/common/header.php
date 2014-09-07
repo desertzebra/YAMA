@@ -3,6 +3,7 @@
 <head>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
 <meta content="utf-8" http-equiv="encoding" />
+<title>YAMA Web</title>
 <?php
         require_once('/var/www/yama/client/config_client.php');
         ini_set('display_errors', '1');
@@ -39,7 +40,7 @@ var CONTEXT_ROOT='<?php print $CFG_YAMAAPI->clientcontext; ?>';
 	<div class="menu" id="menu">
 		<ul>
 			<li><button name="home" id="home" onclick="getPage('/')">
-					<img src='<?php print $CFG_YAMAAPI->clientcontext; ?>/images/icons/home_icon_small.png'></img><br />
+					<img src='<?php print $CFG_YAMAAPI->clientcontext; ?>/images/icons/home_icon_small.png' alt='Home'></img><br />
 					HOME
 				</button></li>
 		</ul>

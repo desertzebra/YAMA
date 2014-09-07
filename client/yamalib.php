@@ -51,7 +51,7 @@ $userid = getUserAttr($user,'id');
       echo '</button></li></ul></div>';
       echo '</div>';
     }
-      echo '<div id="user_details_'.$userid.'" class="'.(($mini===true)?"hidden":"").'">';
+      echo '<div id="user_details_'.$userid.'" class="panel '.(($mini===true)?"hidden":"").'">';
         echo '<div class="item"><label>username</label>'.getUserAttr($user,'username').'</div>';
         echo '<div class="item"><label>country</label>'.getUserAttr($user,'country').'</div>';
 

@@ -28,7 +28,6 @@
             die();
 	
         }else{
-            print "<p>Loading course($courseid) with user($userid)</p>";
 		if(!empty($userid) && $userid>0){
 	    		$init->initUser($userid);
 		}

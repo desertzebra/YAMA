@@ -3,10 +3,10 @@
         $userid = (isset($_GET['user']))?$_GET['user']:0;
 ?>
 
-<div class="block" id='nav_opts'>
+<div class="block nav" id='nav_opts'>
 	<div class="block_head">Navigation Options</div>
 	<ul>
-		<li><div class="opts">
+		<li><div>
 <?php
 if($userid>0){
 echo '<button name="load_u" id="load_u" onclick="getPage(\''.$CFG_YAMAAPI->clientcontext.'/user.php?user='.$userid.'\')">Load Profile</button>';
@@ -17,7 +17,7 @@ echo '<button name="load_u" id="load_u" onclick="getPage(\''.$CFG_YAMAAPI->clien
 ?>
 			</div>
 		</li>
-		<li><div class="opts">
+		<li><div>
 <?php 
 if($courseid!=='' &&  $userid>0){
 echo '<button name="load_c" id="load_c" onclick="getPage(\''.$CFG_YAMAAPI->clientcontext.'/course.php?course='.$courseid.'&amp;user='.$userid.'\')">Load Current Course</button>';
@@ -31,6 +31,35 @@ echo '<button name="load_c" id="load_c" onclick="getPage(\''.$CFG_YAMAAPI->clien
                 </li>   
 	</ul>
 </div>
-<div class="block" id='login'>
+<?php if($userid>0){ ?>
+<div class="block" id="logoutDiv">
 
-</div>
+<?php
+echo '<button name="logout" id="logout" onclick="getPage(\''.$CFG_YAMAAPI->clientcontext.'/logout.php\')">Logout</button>';
+?>
+
+</div><!-- logout block -->
+
+<?php }else{?>
+<div class="block" id='loginDiv'>
+	<div class="block_head">Login</div>
+	<div>
+        <form id="user_form" action="user.php" method="POST">
+	
+	   <div class="form_item">
+        	<label>Username</label>
+        	<input type="text" name="username" id="username" value="" />
+	   </div>
+	   <div class="form_item">
+	        <label>Password</label>
+	        <input type="password" name="pass" id="pass" value="" />
+	   </div>
+           <div class="form_item">
+        	<input type="submit" name="submit" value="login" />
+	   </div>
+	
+        </form>
+	</div>
+
+</div> <!-- Login block -->
+<?php } ?>

@@ -47,14 +47,19 @@ class User {
     function makeActive(){
         $this->user->makeActive();
     }
-    function login($username, $password){
-        $myUsername = $this->user->login($password);
-        if($myUsername!=$username){
-            return false;
-        }
+    /*
+     * login a user with username and password. Leave these empty to use
+     * auth plugin's login page, if it exists.
+     */	
+    function login($username=null, $password=null){
+	print "<p>user model login</p>";
+        $user = $this->user->login($username,$password);
+	return $user;
+	
     }
     function logout(){
         $this->user->logout();
+	$this->user = null;
     }
     function __toString(){
         return "".$this->user;

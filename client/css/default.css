@@ -280,38 +280,25 @@ label {
 	font-size:12px;
 }
 
-input {
-	float: left;
-	font-size: 12px;
-	padding: 4px;
-	border: solid 1px #aacfe4;
-}
+button,input[type=submit]{
+    border-radius:8px;
+        -webkit-border-radius:8px;
+        padding:2px;
+        min-width:60px;
+        opacity: 0.8;
+        font-size: 1.2em;
+        color:#dbdbdb;
+        background-color:#00236c;
+        text-shadow: 0 1px 0 #909090;
+        outline: 1px none #db3939;
+        outline-offset: 3px;
+        display:block;
+    padding-top: 5px;
+    text-align: center;
 
-button { /*float: left; text-decoration: none;*/
-	/*padding: 7px 12px;*/
-	background: -moz-linear-gradient(center top, #f3f3f3, #dddddd);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3',EndColorStr='#dddddd' );
-	border-color: #000;
-	border-width: 1px;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	color: #333;
-	cursor: pointer;
-	display: inline-block;
-	/*padding:6px 6px 4px;*/
-	margin-left: 10px;
-        font-size:0.8em;	
-	opacity: 0.85;
-	/*max-width: 125px;*/
-	padding: 4px;
-	/*height:30px;*/
-	/*background-color: #333;*/
 }
-
-button:hover {
-	background: #ddd;
-	opacity: 1;
+button:hover{
+        opacity: 1;
 }
 
 button.details{
@@ -340,8 +327,13 @@ div.createform label.error {
 
 div.item {
 	width: 49%;
-	float: left;
+	display: inline-block;
         font-size: 12px;
+}
+.panel{
+	clear:both;
+	padding:4px;
+	border-top:3px solid #ccc;
 }
 div.text{
 	padding:2px;
@@ -373,10 +365,10 @@ div.name{
 	margin: 0.8% 1%;
 }
 div.form_item {
-	width: 90%;
 	clear: both;
-	margin: 4px;
 	min-height: 30px;
+	display:inline-block;
+	width:100%;
 }
 
 div.form_item label {
@@ -387,11 +379,14 @@ div.form_item label {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	width: 30%;
+	min-width:70px;
 	padding-left: 6px;
+	display:inline-block;
 }
 
 div.form_item input {
 	text-align: left;
+	min-width:80px;
 }
 
 div.form_item button {
@@ -610,4 +605,27 @@ div.tabs .selected a {
 	background: white;
 	color: black;
 	font-weight: bold;
+}
+
+.nav ul{
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    width: auto;
+}
+.nav li{
+        margin:0;
+}
+.nav li.active{
+        border-bottom: 3px solid #00b8fd;
+}
+div.content{
+    border-left: 8px solid rgba(63, 148, 148, 0.1);
+    font-family: Cambria,Georgia,serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 22px;
+    margin: 0;
+    padding-left: 15px;
+    text-align: left;
 }

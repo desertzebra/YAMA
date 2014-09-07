@@ -13,6 +13,7 @@
 
 require_once('config.php');
 require_once($CFG_YAMA->moodledir."/user/lib.php");
+require_once($CFG_YAMA->moodledir."/login/lib.php");
 require_once $CFG_YAMA->yamadir."/model/Model.php";
 require_once "$CFG_YAMA->yamadir/model/File_Storage_Model.php";
 require_once "$CFG_YAMA->yamadir/model/Capabilities_Model.php";
@@ -168,6 +169,12 @@ class User_Model extends Model{
         parent::load();
         //echo "Loading operation($this->id)... done.\r\n";
     }
+    /*
+     * Load a user by id.
+     * Params:
+     * $id = int|0|null
+     * Return: object user
+     */
     function loadById($userId=0){
         //$user = array('id' => "".$this->id);
         if(!isset($userId) || $userId<1){
@@ -319,14 +326,93 @@ class User_Model extends Model{
         }
       return $this->messages->removeContact($userId);
   }
-
+	
+    /*
+     * Log the user out.
+     * Params:
+     * void
+     * void
+     */
     function logout() {
-        
-    }
+        $authsequence = get_enabled_auth_plugins(); // auths, in sequence
+	foreach($authsequence as $authname) {
+	    $authplugin = get_auth_plugin($authname);
+	    $authplugin->logoutpage_hook();
+	}
 
-    function login($password) { 
-        return $this->username;
+	require_logout();
+	
     }
+    
+    /*
+     * Logging the user into YAMA
+     * Params:
+     * optional $username = String|null
+     * $password = String|null
+     * Return: object $user || string error message
+     */
+    function login($username=null, $password=null) { 
+	if($username === null){
+	    $username = $this->username;
+	}
+	
+	/*
+	 * External auth plugins override the following vars
+	 */
+	$frm = false;
+	$user = false;	
+	
+	/*
+	 * Iterate over auth plugins, sequentially
+	 * to authenticate a user, using external auth
+	 * plugin.
+	 */
+	$authsequence = get_enabled_auth_plugins(true);
+	foreach($authsequence as $auth){
+	    $authplugin = get_auth_plugin($auth);
+	    $authplugin->loginpage_hook();
+	}
+
+	if($frm!=false){
+	 	$frm->username = $username;   
+        }else{
+		$frm = new stdClass();
+		$frm->username = $username;
+	}
+	
+	/*
+	 * Check now the form for username and password.
+	 */
+	if($frm && isset($frm->username)){
+	    $frm->username = trim(core_text::strtolower($frm->username));
+	    if(is_enabled_auth('none')){
+	         if($frm->username != clean_param($frm->username, PARAM_USERNAME)){
+		     $msg = get_string('username').': '.get_string("invalidusername");
+		     $user = null;
+		     return $msg;
+		 }
+	    }
+	    if(!$user){
+		if($password!=null){
+		    $frm->password = $password;
+		}
+		$user = authenticate_user_login($frm->username,$frm->password);
+	    }
+	    
+            //complete_user_login
+	      complete_user_login($user);
+
+	}
+
+        return $user;
+    }
+    
+    /*
+     * Fetch messages for a user.
+     * Params:
+     * optional $userTo = int|object|array
+     * Return: list of messages.
+     */
     public function getMessages($userTo=null){
         return $this->messages->get_notfications($userTo);
     }
