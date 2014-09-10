@@ -5,14 +5,17 @@
 <meta content="utf-8" http-equiv="encoding" />
 <title>YAMA Web</title>
 <?php
-        require_once('/var/www/yama/client/config_client.php');
+//losing session somewhere here:
+        include_once('/var/www/yama/client/config_client.php');
         ini_set('display_errors', '1');
         error_reporting(E_ALL);
         $path = $CFG_YAMAAPI->yamadir;
         set_include_path(get_include_path() . PATH_SEPARATOR . $path);
-        require_once $CFG_YAMAAPI->yamadir."/Init.php";
-        include $CFG_YAMAAPI->clientdir."/yamalib.php";
+        include_once $CFG_YAMAAPI->yamadir."/Init.php";
+        include_once $CFG_YAMAAPI->clientdir."/yamalib.php";
         global $init;
+
+//Losing SESSION upto here.
 
 ?>
 <link rel="stylesheet" type="text/css"
@@ -39,6 +42,9 @@ var CONTEXT_ROOT='<?php print $CFG_YAMAAPI->clientcontext; ?>';
 <body>
 	<div class="menu" id="menu">
 		<ul>
+			<li>
+<?php //var_dump($_SESSION);?>
+			</li>
 			<li><button name="home" id="home" onclick="getPage('/')">
 					<img src='<?php print $CFG_YAMAAPI->clientcontext; ?>/images/icons/home_icon_small.png' alt='Home'></img><br />
 					HOME

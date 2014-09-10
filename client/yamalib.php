@@ -91,8 +91,24 @@ echo '<label>Timezone</label><input type="text" name="user" value="'.$init->getU
 echo '<label>lang</label><input type="text" name="user" value="'.$init->getUserAttr('lang').'" />';
 }
 function printCourseIdEl($courseid=0){
-echo '<div id="form_item"><label>Course Id</label>';
-echo '<input type="text" id="course" name="course" value="'.(($courseid>0)?$courseid:'').'" /></div>';
+  if($init->checkActiveUser()){
+    $courseList = $init->getCoursesForActiveUser();
+    if(!empty($courseList) && count($courseList)>0){
+      echo '<div id="form_item"><label>Course Id</label>';
+      echo '<input type="text" id="course" name="course" value="'.(($courseid>0)?$courseid:'').'" /></div>';
+    }else{
+      echo '<div id="courses" class="block">'+
+           '<div class="block_head">Select a Course</div>'+
+           '<select name="course" id="course">';
+           foreach($courseList as $course){
+             echo '<option value="'+$course->id+'" '+($courseid==$course->id)?'selected':''+'>'+$course->name+'</option>';
+           }
+      echo '</select>'+
+           '</div>';
+    }
+  }else{
+    echo '<div class="error"> Only Logged in users can view the courses.</div>';
+  }
 }
 function printUserIdEl($userid=0){
 echo '<div id="form_item"><label>User Id</label>';

@@ -1,5 +1,4 @@
 <?php
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,12 +20,24 @@ if(file_exists('config.php')){
 $path = $CFG_YAMA->moodledir;
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 define('CLI_SCRIPT',0);
-require_once($CFG_YAMA->moodledir.'/config.php');
-require_once($CFG_YAMA->moodledir.'/lib/externallib.php');
+/*
+ * Moodle loses session data, so best if we put it in a temporary storage
+ * and then put it back in.
+ */
+$tempSessionUser = (isset($_SESSION['yamauser']))?$_SESSION['yamauser']:null;
+$tempSessionCourse = (isset($_SESSION['yamacourse']))?$_SESSION['yamacourse']:null;
+
+include_once($CFG_YAMA->moodledir.'/config.php');
+
+include_once($CFG_YAMA->moodledir.'/lib/externallib.php');
+
+$_SESSION['yamauser'] = $tempSessionUser;
+$_SESSION['yamacourse'] = $tempSessionCourse;
 global $CFG;
 $CFG->debug = 99999;
-require_once "$CFG_YAMA->yamadir/utility/User.php";
-require_once "$CFG_YAMA->yamadir/utility/Course.php";
+
+include_once "$CFG_YAMA->yamadir/utility/User.php";
+include_once "$CFG_YAMA->yamadir/utility/Course.php";
 class Init{
 private $active_user;
 private $active_course;

@@ -1,38 +1,40 @@
-<?php include 'common/header.php'?>
-        <?php
-        require_once('config_client.php');
-        ini_set('display_errors', '1');
-        error_reporting(E_ALL);
-        require_once $CFG_YAMAAPI->yamadir."/Init.php";
-	global $init;
-	if(!isset($init)){
-		$init = new Init();
-	}
-        ?>
-	<div id='main'>	
-        <?php
-        $courseid = getParam((isset($_GET['course']))?$_GET['course']:'');
-	$userid = getParam((isset($_GET['user']))?$_GET['user']:0);
-        if(empty($courseid)){
-            ?>
-        <form id="course_form" action="course.php" method="get">
-        <?php printCourseIdEl();?>
-	<?php printUserIdEl(); ?>
-	<button id="submit" name="submit" onclick="submitForm('course_form','course.php')">Submit</button>
-        </form>
-</div>
-    </body>
-</html>
+<?php
+session_start();
 
-            <?php
-            die();
-	
-        }else{
-		if(!empty($userid) && $userid>0){
-	    		$init->initUser($userid);
-		}
-            $init->initCourse($courseid);
-        }
+
+if(!isset($_SESSION['yamauser'])){
+  header("Location: login.php");
+  exit();
+}
+else{
+  include 'common/header.php';
+  global $init;
+
+  $init = new Init();
+  $init->initUser($userid);
+
+  include 'common/header.php';
+?>
+  <div id='main'>	
+<?php
+
+  if($courseid<=0){
+?>
+<form id="course_form" action="course.php" method="get">
+  <?php printCourseIdEl();?>
+<button id="submit" name="submit" onclick="submitForm('course_form','course.php')">Submit</button>
+</form>
+</div>
+
+<?php 
+    include 'common/header.php';
+    exit();
+  }else{
+    /*
+     * Safe to init the course now.
+     */
+    $init->initCourse($courseid);
+  }
 ?>
 
 <div id='menu'>
@@ -60,5 +62,10 @@ echo '<div class="split"></div>';
 ?>
 </div>
 </div>
-<?php include 'common/footer.php'?>
+<?php
+
+ include 'common/footer.php';
+}//$userid > 0
+
+?>
 

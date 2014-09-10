@@ -1,6 +1,7 @@
 <?php
-        $courseid = (isset($_GET['course']))?$_GET['course']:'';
-        $userid = (isset($_GET['user']))?$_GET['user']:0;
+//session_start();
+        $courseid = (isset($_SESSION['yamacourse']))?$_SESSION['yamacourse']:0;
+        $userid = (isset($_SESSION['yamauser']))?$_SESSION['yamauser']:0;
 ?>
 
 <div class="block nav" id='nav_opts'>
@@ -19,7 +20,7 @@ echo '<button name="load_u" id="load_u" onclick="getPage(\''.$CFG_YAMAAPI->clien
 		</li>
 		<li><div>
 <?php 
-if($courseid!=='' &&  $userid>0){
+if($courseid>0 &&  $userid>0){
 echo '<button name="load_c" id="load_c" onclick="getPage(\''.$CFG_YAMAAPI->clientcontext.'/course.php?course='.$courseid.'&amp;user='.$userid.'\')">Load Current Course</button>';
 
 }
@@ -31,7 +32,11 @@ echo '<button name="load_c" id="load_c" onclick="getPage(\''.$CFG_YAMAAPI->clien
                 </li>   
 	</ul>
 </div>
-<?php if($userid>0){ ?>
+<?php 
+
+if($userid>0){
+
+ ?>
 <div class="block" id="logoutDiv">
 
 <?php
@@ -44,7 +49,7 @@ echo '<button name="logout" id="logout" onclick="getPage(\''.$CFG_YAMAAPI->clien
 <div class="block" id='loginDiv'>
 	<div class="block_head">Login</div>
 	<div>
-        <form id="user_form" action="user.php" method="POST">
+        <form id="user_form" action="login.php" method="post">
 	
 	   <div class="form_item">
         	<label>Username</label>

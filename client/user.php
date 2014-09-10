@@ -1,45 +1,24 @@
-<?php include 'common/header.php'?>
-        <?php
-	global $init;
-        ?>
-<div id='main'>	
-        <?php
-        $username = getParam((isset($_POST['username']))?$_POST['username']:'');
-        $password = getParam((isset($_POST['pass']))?$_POST['pass']:'');
-	$errMsg  = "";
-
-        if(!empty($username) && !empty($password)){
-	    $init = new Init();
-            $errMsg = $init->loginUser($username,$password);
-            if(!empty($errMsg)){
-                print_r($errMsg);
-            }
-
-        }
-	if(!empty($userid)){
-		$init = new Init();
-		$init->initUser($userid);
-	}	
-        else if(!empty($errMsg) || empty($username) || empty($password)){
-?>
-	<div><?php print $errMsg; ?></div>
-	<div>User login required</div>
-</div>
-    </body>
-</html>
-
 <?php
-         die();
-         }
-$userid = $init->getUserAttr('id');
+session_start();
+//var_dump($_SESSION);
+if(!isset($_SESSION['yamauser'])){
+  header("Location: login.php");
+  exit();
+}
+else{
+  include 'common/header.php';
+  global $init;
+
+  $init = new Init();
+  $init->initUser($userid);
+
+?>
 
 
-	/*
-	 * User authenticated
-	 */
-
+<div id='main'>	
+<?php
 	//print "<p>Checking active user id</p>";
-            if(isset($init) && $init->checkActiveUser()){
+  if(isset($init) && $init->checkActiveUser()){
  		//print "<p>Loading Active user</p>";
        	    
 ?>
@@ -96,7 +75,8 @@ if(!empty($courseList) && count($courseList)>0){
             print $course->name;
 	}
 */
-}
+  }// check active user
+}//userid>0 
 ?>
 </div>
 <?php include 'common/footer.php'?>

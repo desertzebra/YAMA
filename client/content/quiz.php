@@ -1,9 +1,9 @@
 <?php include '../common/header.php'?>
         <?php
-        require_once('../config_client.php');
+        include_once('../config_client.php');
         ini_set('display_errors', '1');
         error_reporting(E_ALL);
-        require_once $CFG_YAMAAPI->yamadir."/Init.php";
+        include_once $CFG_YAMAAPI->yamadir."/Init.php";
 	global $init;
 	if(!isset($init)){
             print "<p>resetting global init object</p>";

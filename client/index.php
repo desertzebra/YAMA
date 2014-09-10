@@ -1,4 +1,7 @@
-<?php include 'common/header.php'?> 
+<?php
+session_start();
+include 'common/header.php';
+?> 
 <div id='main'>
 <div class="block">
 <div class="block_head">YAMA Web View</div>
