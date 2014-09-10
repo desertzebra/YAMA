@@ -98,7 +98,7 @@ class Discussion_Content extends Post_Content{
         //print_r($raw_obj);
         $new_post->populate($raw_post);
         $new_post->add();
-        //print_r($new_discussion);
+        //print_r($new_post);
         //print "+++++++++++++++++++";
         array_push($this->posts, $new_post);
     }
@@ -125,6 +125,9 @@ class Discussion_Content extends Post_Content{
                 print_error("Error deleting discussion($this->id)\r\n");
             }
         }
+
+//print "<div>+++++++++++++++++++++++++++++++++++++++++++++++++++++++</div>";
+//print_r($this->posts[1]);
         if(count($this->posts)>0){
         print "adding posts\r\n\r\n";
         if(empty($this->posts[0]->id) ||
@@ -151,8 +154,12 @@ class Discussion_Content extends Post_Content{
         
     }
     function getPostById($id){
-        $postKey = findPostById($id);
-        return findPostByIndex($postKey);
+        foreach($this->posts as $post){
+            if($post->id === $id){
+                return $post;
+            }
+        }
+        return null;
     }
     function findPostById($id){
         foreach($this->posts as $key=>$post){

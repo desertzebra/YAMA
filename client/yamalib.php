@@ -196,7 +196,7 @@ function printContent($content,$courseid='',$userid=''){
     echo '<div class="split"></div>';
     return;
   }
-  echo '<div id="content">';
+  echo '<div id="content_'.$content->id.'">';
   echo '<div class="item"><label>id</label>'.$content->id.'</div>';
   if(isset($content->module_id)){
     echo '<div class="item"><label>module_id</label>'.$content->module_id.'</div>';
@@ -308,6 +308,7 @@ function printDiscussion($discuss,$forumid='',$courseid='',$userid='',$mini=true
   printPost($discuss);
   echo '<div class="item"><label>Number of posts</label>'.count($discuss->posts).'</div>';
   echo "<button type='button' onclick='javascript:newPostForm(\"$userid\",\"$courseid\",\"$forumid\",\"$discuss->id\")'>Add a new Post</button>";
+  echo "<button type='button' onclick='javascript:getPage(\"content/discussion.php?id=".$forumid."&amp;discussion=".$discuss->id."&amp;action=delete\")'>Delete discussion</button>";
 
   echo '<div class="spacer"></div>';
   if($mini){
@@ -320,6 +321,11 @@ function printDiscussion($discuss,$forumid='',$courseid='',$userid='',$mini=true
     printPost($firstPost);
     echo '</div>';
   }else{
+    echo '<div class="table">';
+    foreach($discuss->posts as $post){
+      printPost($post);
+    }
+    echo '</div>';
   }
   if(empty($forumid)){
     if(isset($discuss->forumId)){
@@ -330,6 +336,8 @@ function printDiscussion($discuss,$forumid='',$courseid='',$userid='',$mini=true
     if($mini && !empty($courseid) && !empty($forumid) && !empty($userid))
     {
       echo "<div><button class='button' type='button' id='discussiondetails".$discuss->id."' onclick='getDiscussionDetails(\"$discuss->id\",\"$forumid\",\"$courseid\",\"$userid\")'>More...</button></div>";
+    }else{
+      echo "<div><button class='button' type='button' id='forumdetails".$forumid."' onclick='getForumDetails(\"$forumid\",\"$courseid\",\"$userid\")'>Parent Forum</button></div>";
     }
   
   echo '</div>';

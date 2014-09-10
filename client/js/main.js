@@ -50,12 +50,22 @@ function isloading(state) {
 	}
 
 }
+function getForumDetails(forumId,courseId,userId){
+  if(typeof forumId=='undefined'|| forumId<1){
+    alert("forumId("+forumId+") not set");
+    return false;
+  }
+  getContentDetails('content/discussion',forumId,courseId,userId);
+
+
+}
+
 function getDiscussionDetails(discussionId,forumId,courseId,userId){
   if(typeof forumId=='undefined'|| forumId<1){
     alert("forumId("+forumId+") not set");
     return false;
   }
-  getContentDetails('content/discussion',discussionId,courseId,userId,'&forum='+forumId);
+  getContentDetails('content/discussion',forumId,courseId,userId,'&discussion='+discussionId);
 
 
 }
@@ -162,7 +172,7 @@ function newPostForm(user,course,forum, discussion){
     return;
   }
   if(typeof discussion === 'undefined'){
-    discussion = "";
+    discussion = 0;
   }
   var formHtml = "<div id='newPost' class='overlay-content'>"+
         "<form id='post_form' name='post_form' action=''>"+
@@ -172,11 +182,12 @@ function newPostForm(user,course,forum, discussion){
         "<input type='hidden' name='discussion' id='discussion' value='"+discussion+"' />"+
         "<input type='hidden' name='action' id='action' value='add' />"+
         "<div class='block form_item'>"+
-        "<div class='block_head'>Text</div>" +
-        "<textarea rows='5' name='text' id='text'></textarea>"+
+        "<div class='block_head'>Add a new ";
+       formHtml += ((discussion===0)?"Discussion":"Post");
+       formHtml += "</div><textarea rows='5' name='text' id='text'></textarea>"+
         "<div class='form_item'>"+
 	"<button type='button' id='submitP' name='submitP' onclick='submitForm(\"post_form\",\"content/discussion.php\",\"get\")'>Submit</button>"+
-        "<button type='button' class='close-btn'>Close</button>"+
+        "<button type='button' onclick='javascript:closeOverlay()' class='close-btn'>Close</button>"+
         "</div>"+
         "</form>"+
         "</div>";
@@ -263,10 +274,15 @@ $( "#tabs" ).tabs();
 /*
  * Create and display overlay forms
  */
-
+function closeOverlay(){
+ alert('CLOSING');
+        $('.overlay-bg, .overlay-content').hide(); // hide the overlay
+        $('#newPost').hide();
+}
 $(document).ready(function(){
-    
+
     $('.close-btn').click(function(){
+        alert('CLOSING');
         $('.overlay-bg, .overlay-content').hide(); // hide the overlay
 	$('#newPost').hide();
     });

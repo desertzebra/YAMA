@@ -151,6 +151,7 @@ class Post_Content extends Content_Model{
     function add(){
         $this->state = self::STATE_SAVE;
         foreach($this->children as $post){
+	    $post->parent = $this->id;
             $post->state = self::STATE_SAVE;
         }
     }
@@ -174,6 +175,9 @@ class Post_Content extends Content_Model{
             print_error("This post has no associated discussion.\r\n");
             return false;
         }
+        if(empty($this->parent)){
+            $this->parent = $this->discussion;
+        }
         $this->userid = $this->owner->id;
         if(empty($this->modifiedBy->id)){
             $this->usermodified = $this->userid;
@@ -181,11 +185,11 @@ class Post_Content extends Content_Model{
             $this->usermodified = $this->modifiedBy->id;
         }
         $this->messagetrust = (empty($this->messagetrust))?0:$this->messagetrust;
-        $message = '';
-        //print "Adding new post, cm=".$this->discussion."\r\n";
+        print "Adding new post, cm=".$this->discussion."\r\n";
         //print_r($this);
-        $this->id = forum_add_new_post($this,null,$message);
-        print "New post added. id=".$this->id."\r\n$message\r\n";
+
+        $this->id = forum_add_new_post($this,null,$this->message);
+        print "New post added. id=".$this->id."\r\n$this->message\r\n";
         $this->state = self::STATE_LOAD;
         return true;
         

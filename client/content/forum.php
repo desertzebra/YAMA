@@ -1,45 +1,45 @@
-<?php include '../common/header.php'?>
-        <?php
-        include_once('../config_client.php');
-        ini_set('display_errors', '1');
-        error_reporting(E_ALL);
-        include_once $CFG_YAMAAPI->yamadir."/Init.php";
-	global $init;
-	if(!isset($init)){
-            print "<p>resetting global init object</p>";
-		$init = new Init();
-	}
-        ?>
-	<div id='main'>	
-        <?php
-        $forumid = getParam((isset($_GET['id']))?$_GET['id']:'');
-       $courseid = getParam((isset($_GET['course']))?$_GET['course']:'');
-        $userid = getParam((isset($_GET['user']))?$_GET['user']:0);
+<?php
+session_start();
 
-        if(empty($forumid)){
-            ?>
-        <form id="forum_form" action="content/forum.php" method="get">
-        <label>Forum Id</label>
-        <input type="text" name="id" id="id" value="" />
-	<?php printCourseIdEl();?>
-        <?php printUserIdEl(); ?>
-        <button id="submit" name="submit" onclick="submitForm('forum_form','content/forum.php')">Submit</button>
-        </form>
-</div>
-    </body>
-</html>
+if(!isset($_SESSION['yamauser'])){
+  header("Location: login.php");
+  exit();
+}
+else if(!isset($_SESSION['yamacourse'])){
+  header("Location: course.php");
+  exit();
+}
+else{
+  include '../common/header.php';
+  global $init;
 
-            <?php
-            die();
-	}
-        else{
-                if(!empty($userid) && $userid>0){
-                        $init->initUser($userid);
-                }
-            $init->initCourse($courseid);
+  $init = new Init();
+  $init->initUser($userid);
+  $init->initCourse($courseid);
 
-            $content = $init->getContent('forum',$forumid);
-        }
+?>
+  <div id='main'>	
+  <?php
+    $forumid = getParam((isset($_GET['id']))?$_GET['id']:'');
+    if(empty($forumid)){
+  ?>
+      <form id="forum_form" action="content/forum.php" method="form">
+      <label>Forum Id</label>
+      <input type="text" name="id" id="id" value="" />
+      <?php printCourseIdEl();?>
+      <button id="submit" name="submit" onclick="submitForm('forum_form','content/forum.php')">Submit</button>
+      </form>
+      </div>
+  <?php
+      include '../common/footer.php';
+      die();
+    }else{
+      if(!empty($userid) && $userid>0){
+        $init->initUser($userid);
+      }
+      $init->initCourse($courseid);
+      $content = $init->getContent('forum',$forumid);
+    }
 ?>
 
 <div id='menu'>
@@ -78,5 +78,9 @@ echo '<div class="split"></div>';
 ?>
 </div>
 </div>
-<?php include '../common/footer.php'?>
+<?php 
+include '../common/footer.php';
+}
+
+?>
 

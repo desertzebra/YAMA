@@ -1,27 +1,29 @@
-<?php include '../common/header.php'?>
-        <?php
-        ini_set('display_errors', '1');
-        error_reporting(E_ALL);
-	global $init;
-	if(!isset($init)){
-            print "<p>resetting global init object</p>";
-		$init = new Init();
-	}
-        ?>
+<?php
+session_start();
+
+if(!isset($_SESSION['yamauser'])){
+  header("Location: login.php");
+  exit();
+}
+else if(!isset($_SESSION['yamacourse'])){
+  header("Location: course.php");
+  exit();
+}
+else{
+  include '../common/header.php';
+  global $init;
+
+  $init = new Init();
+  $init->initUser($userid);
+  $init->initCourse($courseid);
+
+?>
 	<div id='main'>	
         <?php
         $forumid = getParam((isset($_GET['id']))?$_GET['id']:0);
-        $courseid = getParam((isset($_GET['course']))?$_GET['course']:0);
-        $userid = getParam((isset($_GET['user']))?$_GET['user']:0);
         $action = getParam((isset($_GET['action']))?$_GET['action']:'');
 	$discussionid = getParam((isset($_GET['discussion']))?$_GET['discussion']:0);
 	$postid = getParam((isset($_GET['post']))?$_GET['post']:0);   
-            if(!empty($userid) && $userid>0){
-                $init->initUser($userid);
-            }
-            if(!empty($courseid) && $courseid>0){
-                $init->initCourse($courseid);
-            }
         if(empty($forumid)){
             ?>
         <div>No Associated Forum object:<?php print $forumid;?></div>
@@ -30,25 +32,25 @@
 </html>
             <?php
             die();
-	}
+	}//empty($forumid)
         else{
             if(isset($init) && $init->checkActiveCourse() && $init->checkActiveUser()){
             $forum = $init->getContent('forum',$forumid);
             }else{
                 print_error("malformed request. No valid forum found");
             }
-        }
+        }//!empty($forumid)
         $text = getParam((isset($_GET['text']))?$_GET['text']:'');
 
 $post = false;
 $discussion = false;
-print "<p>discussion id =$discussionid</p>";
 if($discussionid>0){
     $discussion = $forum->getDiscussionById($discussionid);
+//var_dump($discussion);
     if($postid>0){
         $post = $discussion->getPostById($postid);
-    }
-}
+    }//$postid>0
+}//$discussionid>0
 if($action === 'delete'){
 //make the user active before deleting.
 $init->makeActive();
@@ -58,17 +60,14 @@ $init->makeActive();
       $discussion->delPost($post);
       print "<p>Post deleted</p>";
     }else{
-      $forum->deleteDiscussion(findDiscussionById($discussionid));
+      $forum->deleteDiscussionById($discussionid);
       print "<p>Discussion deleted</p>";
     }
   }else{
   print "<p>no discussion found for deletion</p>";
-  }
-
-    die();
-}
-
-
+  }//no discussion
+    $forum->save();
+}//$action==delete
 elseif($action==='add'){
 //make the user active before add
 $init->makeActive();
@@ -76,40 +75,33 @@ $init->makeActive();
   if($text!=''){
     if($discussion){
       $discussion->addPost($text);
+      $discussion->save();
     }else{
 	print "Adding $text as a discussion in $forum->id";
       $forum->addDiscussion($text);
-    }
+      $forum->save();
+    }//no discussion
   
-    print "<p>Saving forum</p>";
-    $forum->save();
-  }
+  }//action===add
 }
+
+if($discussion){
 ?>
-
-<button type="button" onclick="javascript:newPostForm(<?php print "'".$userid."','".$courseid."','".$forumid."','".$discussionid."'"; ?>)">Add a new discussion</button>
-<!--	<div id='newPost'>
-	<form id="post_form" name="post_form" action="">
-        <input type="hidden" name="id" id="id" value="<?php print $forumid;?>" />
-        <input type="hidden" name="course" id="course" value="<?php print $courseid;?>" />
-        <input type="hidden" name="user" id="user" value="<?php print $userid;?>" />
-        <input type="hidden" name="action" id="action" value="add" />
-	<div class="form_item">
-        <label>Text</label>
-        <textarea cols="100" rows="5" name="text" id="text"><?php print $text;?></textarea>
-        </div>
-	 <div class="form_item">
-<button type="button" id="submitP" name="submitP" onclick="submitForm('post_form','content/discussion.php','get')">Submit</button>
-	</div>
-	</form>
-	</div>
--->
-
-
+<div id="discussions" class="block">
+<div class="block_head"><?php print $discussion->text ?></div>
 <?php
-  
+    printDiscussion($discussion,$forum->id,$courseid,$userid,false);
+    echo '<div class="spacer"></div>';
+    echo '<div class="split"></div>';
+?>
+</div><!-- discussions block -->
+
+<?
+}else{
 
 ?>
+<button type="button" onclick="javascript:newPostForm(<?php print "'".$userid."','".$courseid."','".$forumid."','".$discussionid."'"; ?>)">Add a new discussion</button>
+
 <div id="discussions" class="block">
 <div class="block_head">Discussions</div>
 <?php
@@ -121,15 +113,18 @@ if(count($forum->discussions)<1){
     printDiscussion($discuss,$forum->id,$courseid,$userid);
     echo '<div class="spacer"></div>';
     echo '<div class="split"></div>';
-  }
-}
+  }//foreach discussions
+}//$forum->discussions>0
 ?>
 </div><!-- discussions block -->
+
+<?
+}//no discussion, print the forum
+?>
+
 </div><!--main-->
 <?php
-
-
-include '../common/footer.php'
-
+include '../common/footer.php';
+}//else sessions set
 ?>
 

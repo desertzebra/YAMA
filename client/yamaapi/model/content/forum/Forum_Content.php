@@ -146,6 +146,14 @@ class Forum_Content extends Content_Model {
         }
            return $this->cm_obj;
     }
+    function deleteDiscussionById($id){
+        if($id<0){
+            print_error("incorrect discussion id");
+        }
+        $discussKey = $this->findDiscussionById($id);
+        $this->deleteDiscussion($discussKey);
+    }
+
     function deleteDiscussion($key){
         if($key<0 || $key>count($this->discussions)){
             print_error("incorrect key for discussion");
@@ -169,7 +177,6 @@ class Forum_Content extends Content_Model {
         else if(is_object($userid)){
             $userid = $userid->id;
         }
-print "<p>chuth = $userid</p>";
         $new_discussion = new Discussion_Content();
         $raw_obj = new stdClass();
         $raw_obj->forumId = $this->id;
@@ -186,7 +193,12 @@ print "<p>chuth = $userid</p>";
         return count($this->discussions)-1;
     }
     function getDiscussionById($id){
-	return findDiscussionByIndex(findDiscussionById($id));
+        foreach($this->discussions as $discuss){
+            if($discuss->id === $id){
+                return $discuss;
+            }
+        }
+        return null;
     }
     function findDiscussionById($id){
         foreach($this->discussions as $key=>$discuss){
@@ -255,10 +267,14 @@ print "<p>chuth = $userid</p>";
         //print "\r\nDiscussions=\r\n";
             $discussions_array = forum_get_discussions($this->cm_obj);
         //print_r($discussions_array);
-        foreach($discussions_array as $discuss_item){
+        foreach($discussions_array as $discussItem){
             $discuss_obj = new Discussion_Content();
-            $discuss_obj->populate((object)$discuss_item);
+            $discuss_obj->populate((object)$discussItem);
             $discuss_obj->load(Discussion_Content::SORT_DESC);
+            $discuss_obj->forumId = $this->id;
+            $discuss_obj->courseId = $this->get_courseid();
+            $discuss_obj->format = empty($discussItem->format)?editors_get_preferred_format():$discussItemformat;
+
             array_push($this->discussions, $discuss_obj);
             //print_r($discuss_item);
         }
