@@ -37,7 +37,7 @@ function __construct(){
   $this->active_course = new Course(false);
 }
 function initUser($userid){
-//print "<p>userid=$userid</p>";
+    $this->active_user = new User(false);
     $this->active_user->setUserAttribute('id',$userid);
     $this->active_user->load();
 }

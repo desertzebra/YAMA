@@ -52,7 +52,6 @@ class User {
      * auth plugin's login page, if it exists.
      */	
     function login($username=null, $password=null){
-	print "<p>user model login</p>";
         $user = $this->user->login($username,$password);
 	return $user;
 	

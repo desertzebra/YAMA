@@ -58,6 +58,16 @@ echo '<div class="split"></div>';
 </div>
 <div id="discussions" class="block">
 <div class="block_head">Discussions</div>
+	<div class="block_options">
+          <ul>
+            <li>
+            <?php
+                echo "<button type='button' id='new_discuss' name='new_discuss' onclick='getContentDetails(\"content/discussion\",\"$content->id\",\"$courseid\",\"$userid\",\"&amp;action=add\")'>Add a new Discussion</button>";
+              ?>
+
+	    </li>
+	</ul>
+	</div>
 <?php
 foreach($content->discussions as $key=>$discuss){
 printDiscussion($discuss,$content->id,$courseid,$userid);

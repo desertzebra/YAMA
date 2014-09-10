@@ -58,11 +58,6 @@ echo '<div class="split"></div>';
 
 ?>
   </div>
-  <div id="tabs">
-    <ul>
-      <li><a href="#legacy">Legacy</a></li>
-      <li><a href="#interactive">Interactive</a></li>
-    </ul>
     <div id="legacy">
       <div id="questions" class="minblock">
         <div class="block_head">Questions</div>
@@ -113,9 +108,6 @@ echo '<div class="split"></div>';
          ?>
        </div>
      </div>
-     <div id="interactive">
-     </div>
-  </div>
 </div>
 <?php include '../common/footer.php'?>
 

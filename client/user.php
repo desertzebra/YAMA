@@ -4,8 +4,8 @@
         ?>
 <div id='main'>	
         <?php
-        $username = getParam((isset($_GET['username']))?$_GET['username']:'');
-        $password = getParam((isset($_GET['pass']))?$_GET['pass']:'');
+        $username = getParam((isset($_POST['username']))?$_POST['username']:'');
+        $password = getParam((isset($_POST['pass']))?$_POST['pass']:'');
 	$errMsg  = "";
 
         if(!empty($username) && !empty($password)){
@@ -16,8 +16,6 @@
             }
 
         }
-var_dump($username);
-var_dump($password);
 	if(!empty($userid)){
 		$init = new Init();
 		$init->initUser($userid);

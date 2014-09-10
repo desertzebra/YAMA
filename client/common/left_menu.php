@@ -63,3 +63,5 @@ echo '<button name="logout" id="logout" onclick="getPage(\''.$CFG_YAMAAPI->clien
 
 </div> <!-- Login block -->
 <?php } ?>
+<div id="olcontent" class="overlay-bg">
+</div>

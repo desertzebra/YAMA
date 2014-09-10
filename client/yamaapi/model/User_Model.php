@@ -152,6 +152,7 @@ class User_Model extends Model{
     }
     function load(){
         if($this->requiresSave()){
+	echo "saving";
             $this->save();
         }
         if(!$this->requiresLoad()){
@@ -164,7 +165,7 @@ class User_Model extends Model{
         }
         else{
             echo "Unable to find user, set id(".$this->id
-                    .">0) or username(".$this->username.") to allow search";
+                    .">0) to search";
         }
         parent::load();
         //echo "Loading operation($this->id)... done.\r\n";

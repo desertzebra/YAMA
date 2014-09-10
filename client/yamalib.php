@@ -43,13 +43,14 @@ function printUser($user=null,$mini=false){
 //  if(isset($user)){
 $userid = getUserAttr($user,'id');
     echo '<div class="hidden">'.$userid.' </div>';
-    echo '<div class="item"><label>fullname</label>'.getUserAttr($user,'fullname').'</div>';
     if($mini){
-      echo "<div class='spacer'>";
-      echo '<div id="toggledetails_'.$userid.'" name="toggledetails_'.$userid.'" class="block_options"><ul>';
-      echo '<li><button class="details" type="button" onclick="toggleDiv(\'user_details_'.$userid.'\')">details';
-      echo '</button></li></ul></div>';
+        echo "<div class='spacer'>";
+      echo '<button class="" type="button" onclick="toggleDiv(\'user_details_'.$userid.'\')">'.getUserAttr($user,'fullname');
+      echo '</button>';
       echo '</div>';
+
+    }else{
+    echo '<div class="item"><label>fullname</label>'.getUserAttr($user,'fullname').'</div>';
     }
       echo '<div id="user_details_'.$userid.'" class="panel '.(($mini===true)?"hidden":"").'">';
         echo '<div class="item"><label>username</label>'.getUserAttr($user,'username').'</div>';
@@ -288,6 +289,8 @@ function printDiscussion($discuss,$forumid='',$courseid='',$userid='',$mini=true
   echo '<div id="discuss_'.$discuss->id.'">';
   printPost($discuss);
   echo '<div class="item"><label>Number of posts</label>'.count($discuss->posts).'</div>';
+  echo "<button type='button' onclick='javascript:newPostForm(\"$userid\",\"$courseid\",\"$forumid\",\"$discuss->id\")'>Add a new Post</button>";
+
   echo '<div class="spacer"></div>';
   if($mini){
     echo '<div class="table">';
@@ -308,7 +311,7 @@ function printDiscussion($discuss,$forumid='',$courseid='',$userid='',$mini=true
   }
     if($mini && !empty($courseid) && !empty($forumid) && !empty($userid))
     {
-      echo "<div><button class='button' type='button' id='discussiondetails".$discuss->id."' onclick='getDiscussionDetails(\"$discuss->id\",\"$forumid\",\"$courseid\",\"$userid\")'>Details</button></div>";
+      echo "<div><button class='button' type='button' id='discussiondetails".$discuss->id."' onclick='getDiscussionDetails(\"$discuss->id\",\"$forumid\",\"$courseid\",\"$userid\")'>More...</button></div>";
     }
   
   echo '</div>';

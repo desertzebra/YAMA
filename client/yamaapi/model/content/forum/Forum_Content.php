@@ -163,12 +163,13 @@ class Forum_Content extends Content_Model {
     }
     function addDiscussion($text="",$userid=-1,$format=""){
         global $USER;
-        if(empty($userid)){
+        if(empty($userid) || $userid<0){
             $userid = $USER->id;
         }
-        if(is_object($userid)){
+        else if(is_object($userid)){
             $userid = $userid->id;
         }
+print "<p>chuth = $userid</p>";
         $new_discussion = new Discussion_Content();
         $raw_obj = new stdClass();
         $raw_obj->forumId = $this->id;
@@ -184,6 +185,9 @@ class Forum_Content extends Content_Model {
         array_push($this->discussions, $new_discussion);
         return count($this->discussions)-1;
     }
+    function getDiscussionById($id){
+	return findDiscussionByIndex(findDiscussionById($id));
+    }
     function findDiscussionById($id){
         foreach($this->discussions as $key=>$discuss){
             if($discuss->id === $id){
@@ -193,6 +197,7 @@ class Forum_Content extends Content_Model {
         return null;
     }
     function findDiscussionByIndex($id){
+		if($id==null) return null;
                 return $this->discussions[$id];
     }
     function findDiscussionByNumberOfPosts($numOfPosts){

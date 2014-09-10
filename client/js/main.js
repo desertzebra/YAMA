@@ -45,6 +45,7 @@ function isloading(state) {
 	if (state) {
 		$('#overlay').show();
 	} else {
+		$('.overlay-bg, .overlay-content').hide();
 		$('#overlay').hide();
 	}
 
@@ -153,6 +154,43 @@ alert('fail');
         });
 
 }
+
+function newPostForm(user,course,forum, discussion){
+  if(typeof forum === 'undefined' || typeof user === 'undefined'
+     || typeof course === 'undefined'){
+    alert("Malformed call to create new Post Form");
+    return;
+  }
+  if(typeof discussion === 'undefined'){
+    discussion = "";
+  }
+  var formHtml = "<div id='newPost' class='overlay-content'>"+
+        "<form id='post_form' name='post_form' action=''>"+
+        "<input type='hidden' name='id' id='id' value='"+forum+"' />"+
+        "<input type='hidden' name='course' id='course' value='"+course+"'/>"+
+        "<input type='hidden' name='user' id='user' value='"+user+"'/>"+
+        "<input type='hidden' name='discussion' id='discussion' value='"+discussion+"' />"+
+        "<input type='hidden' name='action' id='action' value='add' />"+
+        "<div class='block form_item'>"+
+        "<div class='block_head'>Text</div>" +
+        "<textarea rows='5' name='text' id='text'></textarea>"+
+        "<div class='form_item'>"+
+	"<button type='button' id='submitP' name='submitP' onclick='submitForm(\"post_form\",\"content/discussion.php\",\"get\")'>Submit</button>"+
+        "<button type='button' class='close-btn'>Close</button>"+
+        "</div>"+
+        "</form>"+
+        "</div>";
+$('#olcontent').html(formHtml);	
+
+        var docHeight = $(document).height(); //grab the height of the page
+        var scrollTop = $(window).scrollTop(); //grab the px value from the top of the page to where you're scrolling
+        $('.overlay-bg').show().css({'height' : docHeight}); //display your popup and set height to the page height
+        $('#newPost').show(); // show the appropriate popup
+        $('#newPost').css({'top': scrollTop+20+'px'}); //set the content 20px from the window top
+
+
+}
+
 function getPage(url,method) {
 
 if(typeof url =='undefined' || url ==""){
@@ -176,7 +214,7 @@ method = "GET";
 		success : function(data) {
 			var xmlDoc = $.parseXML(data);
 			$xml = $(xmlDoc);
-			console.log($xml);
+			//console.log($xml);
                         $("#nav_opts").replaceWith($xml.find('#nav_opts'));
 			$("#main").replaceWith($xml.find('#main'));
                         // $('#main').html(value);
@@ -221,3 +259,22 @@ $('#'+divId).toggle();
 $( "#tabs" ).tabs();
 });
 */
+
+/*
+ * Create and display overlay forms
+ */
+
+$(document).ready(function(){
+    
+    $('.close-btn').click(function(){
+        $('.overlay-bg, .overlay-content').hide(); // hide the overlay
+	$('#newPost').hide();
+    });
+  
+    // hides the popup if user clicks anywhere outside the container
+//    $('.overlay-bg').click(function(){
+//        $('.overlay-bg, .overlay-content').hide();
+//    })
+  
+});
+

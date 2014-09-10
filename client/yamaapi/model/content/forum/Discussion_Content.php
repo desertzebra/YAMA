@@ -61,9 +61,22 @@ class Discussion_Content extends Post_Content{
         return $post_obj;
     }
 
+     function delPost($post){
+	$postid = 0;
+	if(is_object($post)){
+		$postid = $post->id;
+	}else{
+		$postid = $post;
+	}
+       $post = getPostById($postid);
+       $post->deletePerm($this->courseId,$this->forumId);
+       //removing the post from this discussion.
+       unset($this->posts[findPostById($postid)]);
+       
+     }
      function addPost($text="",$userid=-1,$format=""){
         global $USER;
-        if(empty($userid)){
+        if(empty($userid)|| $userid<0){
             $userid = $USER->id;
         }
         if(is_object($userid)){
@@ -136,6 +149,10 @@ class Discussion_Content extends Post_Content{
         }
         $this->state = self::STATE_LOAD;
         
+    }
+    function getPostById($id){
+        $postKey = findPostById($id);
+        return findPostByIndex($postKey);
     }
     function findPostById($id){
         foreach($this->posts as $key=>$post){

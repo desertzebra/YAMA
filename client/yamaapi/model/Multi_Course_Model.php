@@ -33,7 +33,7 @@ class Multi_Course_Model extends Model{
             print "$course is not a valid argument\r\n";
         }
         array_push($this->courseList,$course_obj);
-print "Course count=".count($this->courseList);
+//print "Course count=".count($this->courseList);
     }
     function removeCourse($course){
         if(is_numeric($course)){
