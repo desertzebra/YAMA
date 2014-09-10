@@ -6,6 +6,11 @@ if(!isset($_SESSION['yamauser'])){
   header("Location: login.php");
   exit();
 }
+else if(isset($_POST['course'])){
+  $_SESSION['yamacourse'] = $_POST['course'];
+  header("Location: course.php");
+  exit();
+}
 else{
   include 'common/header.php';
   global $init;
@@ -19,7 +24,7 @@ else{
 
   if($courseid<=0){
 ?>
-<form id="course_form" action="course.php" method="get">
+<form id="course_form" action="course.php" method="post">
   <?php printCourseIdEl(0,$userid);?>
 <button id="submit" name="submit" onclick="submitForm('course_form','course.php')">Submit</button>
 </form>
