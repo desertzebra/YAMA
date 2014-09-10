@@ -99,13 +99,13 @@ global $init;
       echo '<div id="form_item"><label>Course Id</label>';
       echo '<input type="text" id="course" name="course" value="'.(($courseid>0)?$courseid:'').'" /></div>';
     }else{
-      echo '<div id="courses" class="block">'+
-           '<div class="block_head">Select a Course</div>'+
+      echo '<div id="courses" class="block">'.
+           '<div class="block_head">Select a Course</div>'.
            '<select name="course" id="course">';
            foreach($courseList as $course){
-             echo '<option value="'+$course->id+'" '+($courseid==$course->id)?'selected':''+'>'+$course->name+'</option>';
+             echo '<option value="'.$course->id.'" '.(($courseid==$course->id)?'selected':'').'>'.$course->name.'</option>';
            }
-      echo '</select>'+
+      echo '</select>'.
            '</div>';
     }
   }else{
