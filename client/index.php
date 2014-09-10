@@ -18,6 +18,7 @@ This Web View is an barebones implementation of YAMA.
 <li>
 Or start developing by fetching the source code from <a href="https://github.com/desertzebra/YAMA">GitHub</a>
 </li>
+</ul>
 </div>
 </div>
 <?php include 'common/footer.php'?>   
