@@ -79,6 +79,7 @@ $userid = getUserAttr($user,'id');
 */
 }
 function printUserForm(){
+global $init;
 $userid = $init->getUserAttr('id');
 echo '<input type="hidden" name="id" value="'.(empty($userid))?0:$userid.'" />';
 echo '<label>fullname</label><input type="text" name="fullname" value="'.$init->getUserAttr('fullname').'" />';
@@ -90,10 +91,11 @@ echo '<label>email</label><input type="text" name="user" value="'.$init->getUser
 echo '<label>Timezone</label><input type="text" name="user" value="'.$init->getUserAttr('timezone').'" />';
 echo '<label>lang</label><input type="text" name="user" value="'.$init->getUserAttr('lang').'" />';
 }
-function printCourseIdEl($courseid=0){
+function printCourseIdEl($courseid=0,$userid=0){
+global $init;
   if($init->checkActiveUser()){
     $courseList = $init->getCoursesForActiveUser();
-    if(!empty($courseList) && count($courseList)>0){
+    if(empty($courseList) || count($courseList)<1){
       echo '<div id="form_item"><label>Course Id</label>';
       echo '<input type="text" id="course" name="course" value="'.(($courseid>0)?$courseid:'').'" /></div>';
     }else{

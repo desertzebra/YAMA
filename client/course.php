@@ -13,7 +13,6 @@ else{
   $init = new Init();
   $init->initUser($userid);
 
-  include 'common/header.php';
 ?>
   <div id='main'>	
 <?php
@@ -21,13 +20,13 @@ else{
   if($courseid<=0){
 ?>
 <form id="course_form" action="course.php" method="get">
-  <?php printCourseIdEl();?>
+  <?php printCourseIdEl(0,$userid);?>
 <button id="submit" name="submit" onclick="submitForm('course_form','course.php')">Submit</button>
 </form>
 </div>
 
 <?php 
-    include 'common/header.php';
+    include 'common/footer.php';
     exit();
   }else{
     /*
